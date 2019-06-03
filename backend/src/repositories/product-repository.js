@@ -2,9 +2,7 @@ const mongoose = require('mongoose');
 const Product = mongoose.model('Product');
 
 exports.get = async() => {
-    const res = await Product.find({
-        active: true
-    }, 'name price stock');
+    const res = await Product.find();
     return res;
 }
 
@@ -22,7 +20,7 @@ exports.create = async(body) => {
 
 exports.update = async(id, body) => {
     await Product
-        .findByIdAndUpdate(id, {
+        .findOneAndUpdate(id, {
             $set: {
                 name: body.name,
                 description: body.description,

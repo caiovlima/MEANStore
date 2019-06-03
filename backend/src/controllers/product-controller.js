@@ -25,17 +25,16 @@ exports.getById = async (req, res, next) => {
 exports.post = async (req, res, next) => {
     try {   
         await repository.create({
-            name: body.name,
-            description: body.description,
-            price: body.price,
-            stock: body.stock,
-            departments: body.departments
+            name: req.body.name,
+            description: req.body.description,
+            price: req.body.price,
+            stock: req.body.stock,
+            departments: req.body.departments
         });
         res.status(201).send({
             message: 'Produto cadastrado com sucesso!'
         });
     } catch (e) {
-        console.log(e);
         res.status(500).send({
             message: 'Falha ao processar sua requisição'
         });
